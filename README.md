@@ -8,3 +8,6 @@ Here are some useful links for the project.
 * [Play](https://www.playframework.com/)
 * [Scala](http://www.scala-lang.org/documentation/)
 * [SCIM](http://www.simplecloud.info/)
+
+## Notes
+* curl -X GET http://localhost:9000/

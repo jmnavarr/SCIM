@@ -1,7 +1,39 @@
-New log file opened at Wed Aug 30 06:58:17 CDT 2017 by 29594@ubuntu
-Taking next connection to: 42460
-New client attempting to connect on port: 39230-42460
-  Address = /127.0.1.1:42460
-This client on port 39230 has uuid 9c49dcd4-76ff-4ddc-ac16-567bb68bfd18 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
-Connected Clients: play-fork-run-9c49dcd4-76ff-4ddc-ac16-567bb68bfd18
-Taking next connection to: 42460
+New log file opened at Wed Aug 30 09:13:34 CDT 2017 by 32595@ubuntu
+Taking next connection to: 56595
+New client attempting to connect on port: 37949-56595
+  Address = /127.0.1.1:56595
+This client on port 37949 has uuid 8e8a3285-7bb7-49a4-9c53-222364b13d07 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-8e8a3285-7bb7-49a4-9c53-222364b13d07
+Taking next connection to: 56595
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 56595
+New client attempting to connect on port: 37969-56595
+  Address = /127.0.1.1:56595
+Handshake exception on socket: 37969
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	at java.io.DataInputStream.readInt(DataInputStream.java:387)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 56595
+New client attempting to connect on port: 37970-56595
+  Address = /127.0.1.1:56595
+This client on port 37970 has uuid 6b2615a2-4535-44a0-bf86-1edd9b74eb48 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-8e8a3285-7bb7-49a4-9c53-222364b13d07, play-fork-run-6b2615a2-4535-44a0-bf86-1edd9b74eb48
+Taking next connection to: 56595
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+1 daemon clients are connected.
+Server socket thread exiting.
+1 clients open, will close them...
+All client sockets have been closed.
+Closing the 32595@ubuntu logs at Wed Aug 30 09:22:50 CDT 2017, goodbye.
