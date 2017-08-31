@@ -12,6 +12,7 @@ Here are some useful links for the project.
 ## Notes
 * curl -X GET http://localhost:9000/
 * curl -X GET http://localhost:9000/scim/v2/Users
+* curl -X GET http://localhost:9000/scim/v2/Users/1
 
 ## Database
 * create table users (
@@ -21,18 +22,18 @@ Here are some useful links for the project.
      user_name varchar(30) not null,
      email varchar(50),
      active bit(1) default 1,
-     date_updated timestamp,
-     date_created timestamp
+     date_updated int(10),
+     date_created int(10)
   )
 * create table groups (
      id int(10) unsigned auto_increment primary key,
      display_name varchar(30) not null,
-     date_updated timestamp,
-     date_created timestamp
+     date_updated int(10),
+     date_created int(10)
   )
 * create table user_group_membership (
      id int(10) unsigned auto_increment primary key,
      user_id int(10) unsigned,
      group_id int(10) unsigned,
-     date_created timestamp
+     date_created int(10)
   )
