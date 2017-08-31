@@ -2,14 +2,18 @@ package controllers
 
 import javax.inject._
 import play.api.db.Database
+import play.api.libs.json.Json
 import play.api.mvc._
+import models._
 
 class SCIMController @Inject() (db:Database) extends Controller {
 
   def users(filter:Option[String], count:Option[String], startIndex:Option[String]) = Action {
     // TODO: Retrieve paginated User Objects
     // TODO: Allow for an equals and startsWith filters on username
-    Ok
+    val users = User.get_all()
+
+    Ok(Json.obj("result" -> users))
   }
 
   def user(uid:String) = Action {
