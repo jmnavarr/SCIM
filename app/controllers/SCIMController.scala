@@ -44,12 +44,20 @@ class SCIMController @Inject() (db:Database) extends Controller {
 
   def groups(count:Option[String], startIndex:Option[String]) = Action {
     // TODO: Retrieve paginated Group Objects
-    Ok
+    val limit = if (count.isEmpty) 10 else count.get.toInt
+    val offset = if (startIndex.isEmpty) 0 else startIndex.get.toInt
+
+    val groups_result = Group.get_all(limit, offset)
+
+    Ok(Json.obj("result" -> groups_result))
   }
 
   def group(groupId:String) = Action {
     // TODO: Retrieve a single Group Object by ID
-    Ok
+    val id = groupId.toInt
+    val group_result = Group.get_by_id(id)
+
+    Ok(Json.obj("result" -> group_result))
   }
 
   def patchGroup(groupId:String) = Action {
