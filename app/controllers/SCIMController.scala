@@ -2,9 +2,11 @@ package controllers
 
 import javax.inject._
 import play.api.db.Database
-import play.api.libs.json.Json
+import play.api.libs.json._
 import play.api.mvc._
 import models._
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class SCIMController @Inject() (db:Database) extends Controller {
 
@@ -27,9 +29,15 @@ class SCIMController @Inject() (db:Database) extends Controller {
     Ok(Json.obj("result" -> user_result))
   }
 
-  def createUser() = Action {
+  def createUser() = Action.async(parse.json) { request: Request[JsValue] =>
+
     // TODO: Create a User Object with firstname and lastname metadata
-    Ok
+    val first_name = (request.body \ "first_name").as[String]
+    val user_name = (request.body \ "user_name").as[String]
+
+    User.create(first_name, user_name)
+
+    Future(Ok(Json.obj("result" -> Json.obj())))
   }
 
   def updateUser(uid:String) = Action {

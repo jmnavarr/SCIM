@@ -28,6 +28,10 @@ object User {
      user
    }
 
+   def create(first_name: String, user_name: String) = {
+     UserDAO.create(first_name, user_name)
+   }
+
    def delete(id: Int) = {
      UserDAO.delete(id)
    }

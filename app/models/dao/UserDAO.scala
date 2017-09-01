@@ -79,6 +79,20 @@ object UserDAO {
     }
   }
 
+  def create(first_name: String, user_name: String) = {
+    DB.withConnection { implicit c =>
+      SQL(
+        """
+          | INSERT IGNORE INTO users (first_name, last_name, user_name, email, date_updated, date_created)
+          | VALUES
+          |   ({first_name}, '', {user_name}, '', 0, 0);
+        """.stripMargin).on(
+        "first_name" -> first_name,
+        "user_name" -> user_name
+      ).executeInsert()
+    }
+  }
+
   def delete(id: Int) = {
     DB.withConnection { implicit c =>
       SQL(
