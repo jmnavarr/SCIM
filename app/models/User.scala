@@ -27,6 +27,10 @@ object User {
 
      user
    }
+
+   def delete(id: Int) = {
+     UserDAO.delete(id)
+   }
 }
 
 case class User(id: Int, first_name: String, last_name: String, user_name: String, email: String, active: Int, date_updated: Int, date_created: Int)

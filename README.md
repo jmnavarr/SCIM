@@ -15,6 +15,7 @@ Here are some useful links for the project.
 * curl -X GET http://localhost:9000/scim/v2/Users/1
 * curl -X GET "http://localhost:9000/scim/v2/Users?count=2&startIndex=0&filter=starts_with:a" -v
 * curl -X GET "http://localhost:9000/scim/v2/Groups?count=2&startIndex=0" -v
+* curl -X DELETE http://localhost:9000/scim/v2/Users/1 -v
 
 ## Database
 * create table users (

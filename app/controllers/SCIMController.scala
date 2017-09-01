@@ -39,7 +39,10 @@ class SCIMController @Inject() (db:Database) extends Controller {
 
   def deleteUser(uid:String) = Action {
     // TODO: Delete a User Object by ID
-    Ok
+    val id = uid.toInt
+
+    User.delete(id)
+    Ok(Json.obj("result" -> Json.obj()))
   }
 
   def groups(count:Option[String], startIndex:Option[String]) = Action {

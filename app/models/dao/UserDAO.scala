@@ -78,4 +78,18 @@ object UserDAO {
       //User(5, "test_user", "test_last", "test_user", "test@gmail.com", 1, 10, 11)
     }
   }
+
+  def delete(id: Int) = {
+    DB.withConnection { implicit c =>
+      SQL(
+        """
+          | DELETE FROM users
+          | WHERE id = {user_id}
+          | LIMIT 1;
+        """.stripMargin
+      ).on(
+        "user_id" -> id
+      ).executeUpdate()
+    }
+  }
 }
