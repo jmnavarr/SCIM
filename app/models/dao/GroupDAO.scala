@@ -12,6 +12,7 @@ import play.api.Play.current
 import javax.inject.{Inject, Singleton}
 import java.sql._
 import anorm.SqlParser.{ int, str, to }
+import models._
 
 //@Singleton
 //class UserDAO @Inject() (dBApi: DBApi) {
@@ -33,7 +34,7 @@ object GroupDAO {
       ).apply()
 
       results.map { row =>
-        Group(row[Int]("id"), row[String]("display_name"),
+        Group(row[Int]("id"), row[String]("display_name"), Seq[User](),
           row[Int]("date_updated"), row[Int]("date_created"))
       }.force.toList
     }
@@ -55,7 +56,7 @@ object GroupDAO {
       ).apply() //.as(parser.flatten.*)
 
       val group = results.map { row =>
-        Group(row[Int]("id"), row[String]("display_name"),
+        Group(row[Int]("id"), row[String]("display_name"), Seq[User](),
           row[Int]("date_updated"), row[Int]("date_created"))
       }
 
