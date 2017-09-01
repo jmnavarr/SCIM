@@ -11,7 +11,10 @@ class SCIMController @Inject() (db:Database) extends Controller {
   def users(filter:Option[String], count:Option[String], startIndex:Option[String]) = Action {
     // TODO: Retrieve paginated User Objects
     // TODO: Allow for an equals and startsWith filters on username
-    val users_result = User.get_all()
+    val limit = if (count.isEmpty) 10 else count.get.toInt
+    val offset = if (startIndex.isEmpty) 0 else startIndex.get.toInt
+
+    val users_result = User.get_all(filter, limit, offset)
 
     Ok(Json.obj("result" -> users_result))
   }

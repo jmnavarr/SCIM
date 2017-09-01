@@ -18,13 +18,31 @@ import anorm.SqlParser.{ int, str, to }
 object UserDAO {
   //private val db = dBApi.getDatabase("default")
 
-  def get_all(): List[User] = {
+  def get_all(filter:Option[String], count: Int = 10, startIndex: Int = 0): List[User] = {
+    val filterClause =
+      if (filter.isEmpty) ""
+      else {
+        if(filter.get.startsWith("equals:")) {
+          val filter_user_name = filter.get.replace("equals:", "")
+          " WHERE user_name = '" + filter_user_name + "'"
+        } else  {
+          val filter_user_name = filter.get.replace("starts_with:", "")
+          " WHERE user_name LIKE '" + filter_user_name + "%'"
+        }
+      }
+
     DB.withConnection { implicit c =>
       val results = SQL(
-        """
+        s"""
           |SELECT * FROM users
+          |$filterClause
+          |ORDER BY id asc
+          |LIMIT {limit} OFFSET {offset}
           |
         """.stripMargin
+      ).on(
+        "limit" -> count,
+        "offset" -> startIndex
       ).apply()
 
       results.map { row =>

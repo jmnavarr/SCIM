@@ -16,8 +16,8 @@ object User {
       (JsPath \ "date_created").write[Int]
     )(unlift(User.unapply))
 
-   def get_all(): List[User] = {
-     val users = UserDAO.get_all()
+   def get_all(filter:Option[String], count: Int = 10, startIndex: Int = 0): List[User] = {
+     val users = UserDAO.get_all(filter, count, startIndex)
 
      users
    }
