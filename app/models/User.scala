@@ -32,6 +32,10 @@ object User {
      UserDAO.create(first_name, user_name)
    }
 
+   def update(id: Int, first_name: String, last_name: String, active: Int) = {
+     UserDAO.update(id, first_name, last_name, active)
+   }
+
    def delete(id: Int) = {
      UserDAO.delete(id)
    }

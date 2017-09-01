@@ -40,9 +40,16 @@ class SCIMController @Inject() (db:Database) extends Controller {
     Future(Ok(Json.obj("result" -> Json.obj())))
   }
 
-  def updateUser(uid:String) = Action {
+  def updateUser(uid:String) = Action.async(parse.json) { request: Request[JsValue] =>
     // TODO: Update a User Object's firstname, lastname, and active status
-    Ok
+    val id = uid.toInt
+    val first_name = (request.body \ "first_name").as[String]
+    val last_name = (request.body \ "last_name").as[String]
+    val active = (request.body \ "active").as[Int]
+
+    User.update(id, first_name, last_name, active)
+
+    Future(Ok(Json.obj("result" -> Json.obj())))
   }
 
   def deleteUser(uid:String) = Action {

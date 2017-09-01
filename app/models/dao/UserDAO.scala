@@ -93,6 +93,24 @@ object UserDAO {
     }
   }
 
+  def update(id: Int, first_name: String, last_name: String, active: Int) = {
+    DB.withConnection { implicit c =>
+      SQL(
+        s"""
+          | UPDATE users
+          | SET first_name = {first_name}, last_name = {last_name}, active = {active}
+          | WHERE id = {user_id}
+          |
+        """.stripMargin
+      ).on(
+        "first_name" -> first_name,
+        "last_name" -> last_name,
+        "active" -> active,
+        "user_id" -> id
+      ).executeUpdate()
+    }
+  }
+
   def delete(id: Int) = {
     DB.withConnection { implicit c =>
       SQL(

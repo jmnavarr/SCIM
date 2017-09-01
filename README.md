@@ -17,6 +17,7 @@ Here are some useful links for the project.
 * curl -X GET "http://localhost:9000/scim/v2/Groups?count=2&startIndex=0" -v
 * curl -X DELETE http://localhost:9000/scim/v2/Users/1 -v
 * curl -H "Content-Type: application/json" -X POST -d '{"first_name":"asdf","user_name":"xyz"}' http://localhost:9000/scim/v2/Users
+* curl -H "Content-Type: application/json" -X PUT -d '{"first_name":"michael","last_name":"jordan","active":0}' http://localhost:9000/scim/v2/Users/3
 
 ## Database
 * create table users (
