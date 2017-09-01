@@ -18,6 +18,7 @@ Here are some useful links for the project.
 * curl -X DELETE http://localhost:9000/scim/v2/Users/1 -v
 * curl -H "Content-Type: application/json" -X POST -d '{"first_name":"asdf","user_name":"xyz"}' http://localhost:9000/scim/v2/Users
 * curl -H "Content-Type: application/json" -X PUT -d '{"first_name":"michael","last_name":"jordan","active":0}' http://localhost:9000/scim/v2/Users/3
+* curl -H "Content-Type: application/json" -X PATCH -d '{"member_ids":[2,3]}' http://localhost:9000/scim/v2/Groups/1
 
 ## Database
 * create table users (
@@ -42,3 +43,4 @@ Here are some useful links for the project.
      group_id int(10) unsigned,
      date_created int(10)
   )
+* alter table user_group_membership add unique index user_group_index (user_id, group_id);

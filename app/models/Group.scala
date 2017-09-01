@@ -30,6 +30,14 @@ object Group {
 
      group
    }
+
+   def update_group_members(group_id: Int, member_ids: Seq[Int]) = {
+     UserGroupMembershipDAO.delete_users_from_group(group_id)
+
+     for (member_id <- member_ids) {
+       UserGroupMembershipDAO.insert_user_for_group(group_id, member_id)
+     }
+   }
 }
 
 case class Group(id: Int, display_name: String, var members: Seq[User], date_updated: Int, date_created: Int)

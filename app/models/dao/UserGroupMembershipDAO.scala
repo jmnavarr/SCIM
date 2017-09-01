@@ -39,4 +39,30 @@ object UserGroupMembershipDAO {
       }.force.toList
     }
   }
+
+  def delete_users_from_group(group_id: Int) = {
+    DB.withConnection { implicit c =>
+      SQL(
+        """
+          | DELETE FROM user_group_membership
+          | WHERE group_id = {group_id}
+        """.stripMargin).on(
+        "group_id" -> group_id
+      ).executeUpdate()
+    }
+  }
+
+  def insert_user_for_group(group_id: Int, user_id: Int) = {
+    DB.withConnection { implicit c =>
+      SQL(
+        """
+          | INSERT IGNORE INTO user_group_membership (user_id, group_id, date_created)
+          | VALUES
+          |   ({user_id}, {group_id}, 0);
+        """.stripMargin).on(
+        "user_id" -> user_id,
+        "group_id" -> group_id
+      ).executeInsert()
+    }
+  }
 }

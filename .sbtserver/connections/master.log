@@ -1,7 +1,13 @@
-New log file opened at Thu Aug 31 23:22:17 CDT 2017 by 23903@ubuntu
-Taking next connection to: 50178
-New client attempting to connect on port: 52210-50178
-  Address = /127.0.1.1:50178
-This client on port 52210 has uuid 6a2bf890-416a-43d1-a39f-2da74f4b39a5 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
-Connected Clients: play-fork-run-6a2bf890-416a-43d1-a39f-2da74f4b39a5
-Taking next connection to: 50178
+New log file opened at Fri Sep 01 01:30:52 CDT 2017 by 32330@ubuntu
+Taking next connection to: 55020
+New client attempting to connect on port: 40287-55020
+  Address = /127.0.1.1:55020
+This client on port 40287 has uuid 6268e995-bbe4-4c4b-927d-9fdd6debf051 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-6268e995-bbe4-4c4b-927d-9fdd6debf051
+Taking next connection to: 55020
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 55020
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 55020

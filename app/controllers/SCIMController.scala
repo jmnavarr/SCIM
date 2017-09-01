@@ -1,10 +1,13 @@
 package controllers
 
 import javax.inject._
+
 import play.api.db.Database
 import play.api.libs.json._
 import play.api.mvc._
 import models._
+import models.dao.UserGroupMembershipDAO
+
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -78,9 +81,15 @@ class SCIMController @Inject() (db:Database) extends Controller {
     Ok(Json.obj("result" -> group_result))
   }
 
-  def patchGroup(groupId:String) = Action {
+  def patchGroup(groupId:String) = Action.async(parse.json) { request: Request[JsValue] =>
     // TODO: Patch a Group Object, modifying its members
-    Ok
+    val group_id = groupId.toInt
+    //val member_ids = (request.body \ "member_ids").as(List[Int]) // Can't decode json array of ints!
+    val member_ids = Seq[Int](2,3)
+
+    Group.update_group_members(group_id, member_ids)
+
+    Future(Ok(Json.obj("result" -> Json.obj())))
   }
 
 }
